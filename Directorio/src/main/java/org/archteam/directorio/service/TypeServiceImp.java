@@ -6,7 +6,10 @@
 package org.archteam.directorio.service;
 
 import java.util.ArrayList;
+import java.util.Set;
+import org.archteam.directorio.models.Anime;
 import org.archteam.directorio.models.Type;
+import org.archteam.directorio.repositories.AnimeRepository;
 import org.archteam.directorio.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ public class TypeServiceImp implements TypeService {
     
     @Autowired
     public TypeRepository typeRepo;
+    @Autowired
+    public AnimeRepository animeRepo;
     
     @Override
     @Transactional(readOnly = true)
@@ -30,8 +35,12 @@ public class TypeServiceImp implements TypeService {
     
     @Override
     @Transactional(readOnly = true)
-    public ArrayList<Type> getTypesByAnime(Long id){
-        return null;
+    public Set<Type> getTypesByAnime(Long id){
+        Anime anime = animeRepo.findById(id).orElse(null);
+        if (anime == null){
+            return null;
+        }
+        return anime.getTypes();
     }
     
     @Override
@@ -42,13 +51,19 @@ public class TypeServiceImp implements TypeService {
     
     @Override
     @Transactional
-    public Type updateType(Type type){
-        return typeRepo.save(type);
+    public Type updateType(Type newType, Long id){
+        return typeRepo.findById(id)
+                .map(type -> {
+                    type.setDescription(newType.getDescription());
+                    type.setName(newType.getName());
+                    return typeRepo.save(type);
+                }).orElseGet(() ->{ return newType;});
     }
     
     @Override
     @Transactional
-    public void deleteType(Type type){
+    public void deleteType(Long id){
+        Type type = typeRepo.getById(id);
         typeRepo.delete(type);
     }
     

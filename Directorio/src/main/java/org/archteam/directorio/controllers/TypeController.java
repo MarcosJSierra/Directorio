@@ -6,6 +6,7 @@
 package org.archteam.directorio.controllers;
 
 import java.util.List;
+import java.util.Set;
 import org.archteam.directorio.models.Type;
 import org.archteam.directorio.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,12 @@ public class TypeController {
     private TypeService typeService;
     
     @GetMapping("/")
-    List<Type> getAnimeList(){
+    List<Type> getTypesList(){
         return typeService.getAll();
     }
     
     @GetMapping("/anime/{id}")
-    List<Type> getTypeByAnime(@PathVariable Long id){
+    Set<Type> getTypeByAnime(@PathVariable Long id){
         return typeService.getTypesByAnime(id);
     }
     
@@ -47,15 +48,14 @@ public class TypeController {
         return typeService.getTypeById(id);
     }
     
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Type createAnime(Type type){
+    @PostMapping(value = "/")
+    Type createAnime(@RequestBody Type type){
         return typeService.createType(type);
     }
     
     @PutMapping("/{id}")
-    Type updateSensor(@RequestBody Type type, @PathVariable Integer id) {
-
-        return typeService.updateType(type);
+    Type updateSensor(@RequestBody Type type, @PathVariable Long id) {
+        return typeService.updateType(type, id);
     }
     
     @DeleteMapping("/{id}")

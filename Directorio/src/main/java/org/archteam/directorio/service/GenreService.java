@@ -6,6 +6,7 @@
 package org.archteam.directorio.service;
 
 import java.util.ArrayList;
+import java.util.Set;
 import org.archteam.directorio.models.Genre;
 
 /**
@@ -16,13 +17,13 @@ public interface GenreService {
     
     public Genre getGenreById(Long id);
     
-    public ArrayList<Genre> getGenreByAnime(Long id);
+    public Set<Genre> getGenreByAnime(Long id);
     
     public Genre createGenre(Genre genre);
     
-    public Genre updateGenre(Genre genre);
+    public Genre updateGenre(Genre genre, Long id);
     
-    public void delteGenre(Genre genre);
+    public void deleteGenre(Long id);
     
     public ArrayList<Genre> getAll();
     

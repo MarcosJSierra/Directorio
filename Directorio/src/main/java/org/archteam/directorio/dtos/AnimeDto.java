@@ -5,6 +5,7 @@
  */
 package org.archteam.directorio.dtos;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
@@ -28,7 +29,7 @@ public class AnimeDto {
     
     private Double duration;
     
-    Set<GenreDto> genres = new HashSet<>();
+    ArrayList<Long> genres = new ArrayList<>();
     
-    Set<TypeDto> types = new HashSet<>();
+    ArrayList<Long> types = new ArrayList<>();
 }

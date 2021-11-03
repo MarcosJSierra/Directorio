@@ -8,6 +8,7 @@ package org.archteam.directorio.controllers;
 import java.util.List;
 import org.archteam.directorio.dtos.AnimeDto;
 import org.archteam.directorio.models.Anime;
+import org.archteam.directorio.repositories.AnimeRepository;
 import org.archteam.directorio.service.AnimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -52,15 +53,15 @@ public class AnimeController {
         return animeService.getAnimeByID(id);
     }
     
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Anime createAnime(AnimeDto anime){
+    @PostMapping(value = "/")
+    Anime createAnime(@RequestBody AnimeDto anime){
         return animeService.createAnime(anime);
     }
     
     @PutMapping("/{id}")
-    Anime updateSensor(@RequestBody AnimeDto anime, @PathVariable Integer id) {
+    Anime updateSensor(@RequestBody AnimeDto anime, @PathVariable Long id) {
 
-        return animeService.updateAnime(anime);
+        return animeService.updateAnime(anime, id);
     }
     
     @DeleteMapping("/{id}")

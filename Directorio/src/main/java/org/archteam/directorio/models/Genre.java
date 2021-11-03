@@ -6,11 +6,14 @@
 
 package org.archteam.directorio.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  *
@@ -22,13 +25,14 @@ import lombok.Data;
 public class Genre implements Serializable {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     
+    @Column(name = "name")
     private String name;
     
+    @Column(name = "description")
     private String description;
-    
-    @ManyToMany(mappedBy = "genres")
-    private Set<Anime> animes = new HashSet<>();
+       
 }

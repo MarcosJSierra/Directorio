@@ -6,6 +6,7 @@
 package org.archteam.directorio.service;
 
 import java.util.ArrayList;
+import java.util.Set;
 import org.archteam.directorio.models.Type;
 
 /**
@@ -16,13 +17,13 @@ public interface TypeService {
     
     public Type getTypeById(Long id);
     
-    public ArrayList<Type> getTypesByAnime(Long id);
+    public Set<Type> getTypesByAnime(Long id);
     
     public Type createType(Type type);
     
-    public Type updateType(Type type);
+    public Type updateType(Type newType, Long id);
     
-    public void deleteType(Type type);
+    public void deleteType(Long id);
     
     public ArrayList<Type> getAll();
     

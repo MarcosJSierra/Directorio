@@ -6,6 +6,7 @@
 package org.archteam.directorio.service;
 
 import java.util.ArrayList;
+import org.archteam.directorio.dtos.AnimeDto;
 import org.archteam.directorio.models.Anime;
 
 /**
@@ -20,11 +21,11 @@ public interface AnimeService {
     
     public ArrayList<Anime> getAnimesByType(Long id);
     
-    public Anime createAnime(Anime anime);
+    public Anime createAnime(AnimeDto anime);
     
-    public Anime updateAnime(Anime anime);
+    public Anime updateAnime(AnimeDto anime, Long id);
     
-    public void deleteAnime(Anime anime);
+    public void deleteAnime(Long id);
     
     public ArrayList<Anime> getAll();
     

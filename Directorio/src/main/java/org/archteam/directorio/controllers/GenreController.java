@@ -6,6 +6,7 @@
 package org.archteam.directorio.controllers;
 
 import java.util.List;
+import java.util.Set;
 import org.archteam.directorio.models.Genre;
 import org.archteam.directorio.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,12 @@ public class GenreController {
     private GenreService genreService;
     
     @GetMapping("/")
-    List<Genre> getAnimeList(){
+    List<Genre> getGenreList(){
         return genreService.getAll();
     }
     
     @GetMapping("/anime/{id}")
-    List<Genre> getGenreByAnime(@PathVariable Long id){
+    Set<Genre> getGenreByAnime(@PathVariable Long id){
         return genreService.getGenreByAnime(id);
     }
     
@@ -46,15 +47,15 @@ public class GenreController {
         return genreService.getGenreById(id);
     }
     
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Genre createAnime(Genre genre){
+    @PostMapping(value = "/")
+    Genre createAnime(@RequestBody Genre genre){
         return genreService.createGenre(genre);
     }
     
     @PutMapping("/{id}")
-    Genre updateSensor(@RequestBody Genre genre, @PathVariable Integer id) {
+    Genre updateSensor(@RequestBody Genre genre, @PathVariable Long id) {
 
-        return genreService.updateGenre(genre);
+        return genreService.updateGenre(genre, id);
     }
     
     @DeleteMapping("/{id}")
