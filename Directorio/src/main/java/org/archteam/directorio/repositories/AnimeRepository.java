@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author marcos
  */
 @Repository
-interface AnimeRepository extends JpaRepository<Anime, Long>{
+public interface AnimeRepository extends JpaRepository<Anime, Long>{
     
 }
