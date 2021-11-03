@@ -7,11 +7,13 @@ package org.archteam.directorio.repositories;
 
 import org.archteam.directorio.models.Anime;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author marcos
  */
+@Repository
 interface AnimeRepository extends JpaRepository<Anime, Long>{
     
 }
